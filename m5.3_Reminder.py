@@ -8,7 +8,6 @@ import pygame
 
 t = 0
 
-
 def set():
     global t
     rem = sd.askstring("Время напоминания", "Установите напоминание в 24 ч. формате ЧЧ:ММ")
@@ -27,7 +26,7 @@ def set():
 
 
 def check():
-    global_t
+    global t
     if t:
         now = time.time()
         if now >= t:
@@ -35,6 +34,10 @@ def check():
             t = 0
     window.after(10000, check)
 
+def play_sound():
+    pygame.mixer.init()
+    pygame.mixer.music.load("Reminder_rington.mp3")
+    pygame.mixer.music.play()
 
 
 
