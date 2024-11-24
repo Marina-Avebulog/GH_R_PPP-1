@@ -18,7 +18,7 @@ def set():
             minute_p = int(rem.split(":")[1])
             now = datetime.datetime.now()
             print(now)
-            dt = now.replace(hour= hour_p, minute=minute_p)
+            dt = now.replace(hour= hour_p, minute=minute_p, second=0)
             print(dt)
             t_p = dt.timestamp()
             print(t_p)
@@ -44,9 +44,11 @@ def play_sound():
 
 window = Tk()
 window.title ("Напомню")
-Label = Label(text = "Установите напоминание")
+Label = Label(text = "Установите напоминание", font=("Edwardian Script ITC", 16))
 Label.pack(pady = 10)
 set_button = Button (text = "Установите напоминалку", command=set)
 set_button.pack()
+
+check()
 
 window.mainloop()
