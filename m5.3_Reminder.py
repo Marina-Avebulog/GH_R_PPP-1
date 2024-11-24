@@ -8,6 +8,7 @@ import pygame
 
 
 t = None
+music = False
 
 def set():
     global t
@@ -36,10 +37,18 @@ def check():
     window.after(10000, check)
 
 def play_sound():
+    global music
+    music = True
     pygame.mixer.init()
     pygame.mixer.music.load("reminder.mp3")
     pygame.mixer.music.play()
 
+def stop_music():
+    global music
+    if music:
+        pygame.mixer.music.stop()
+        music = False
+    label.config(text = "Установите заново напоминание")
 
 
 window = Tk()
@@ -47,8 +56,11 @@ window.title ("Напомню")
 Label = Label(text = "Установите напоминание", font=("Edwardian Script ITC", 16))
 Label.pack(pady = 10)
 set_button = Button (text = "Установите напоминалку", command=set)
-set_button.pack()
+set_button.pack(pady = 10)
 
+
+stop_btn = Button(text = "остановить проигрывание музыки", command=stop_music)
+stop_btn.pack(pady = 10)
 check()
 
 window.mainloop()
