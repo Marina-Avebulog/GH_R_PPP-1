@@ -1,3 +1,4 @@
+from enum import global_str
 from tkinter import *
 from tkinter import messagebox as mb
 from tkinter import simpledialog as sd
@@ -5,7 +6,11 @@ import datetime
 import time
 import pygame
 
+t = 0
+
+
 def set():
+    global t
     rem = sd.askstring("Время напоминания", "Установите напоминание в 24 ч. формате ЧЧ:ММ")
     if rem:
         try:
@@ -19,6 +24,19 @@ def set():
             print(t_p)
         except Exception as e:
             mb.showerror("Ошибка", "Произошла ошибка {e}" )
+
+
+def check():
+    global_t
+    if t:
+        now = time.time()
+        if now >= t:
+            play_sound()
+            t = 0
+    window.after(10000, check)
+
+
+
 
 window = Tk()
 window.title ("Напомню")
