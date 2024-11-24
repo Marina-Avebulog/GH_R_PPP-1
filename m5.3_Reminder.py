@@ -1,4 +1,3 @@
-from enum import global_str
 from tkinter import *
 from tkinter import messagebox as mb
 from tkinter import simpledialog as sd
@@ -6,7 +5,9 @@ import datetime
 import time
 import pygame
 
-t = 0
+
+
+t = None
 
 def set():
     global t
@@ -36,7 +37,7 @@ def check():
 
 def play_sound():
     pygame.mixer.init()
-    pygame.mixer.music.load("Reminder_rington.mp3")
+    pygame.mixer.music.load("reminder.mp3")
     pygame.mixer.music.play()
 
 
