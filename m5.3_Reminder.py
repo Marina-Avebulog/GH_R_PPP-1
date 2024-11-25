@@ -1,3 +1,4 @@
+from email.policy import default
 from tkinter import *
 from tkinter import messagebox as mb
 from tkinter import simpledialog as sd
@@ -7,11 +8,11 @@ import pygame
 
 
 
-t = None
+t_p = None
 music = False
 
 def set():
-    global t
+    global t_p
     rem = sd.askstring("Время напоминания", "Установите напоминание в 24 ч. формате ЧЧ:ММ")
     if rem:
         try:
@@ -30,19 +31,19 @@ def set():
 
 
 def check():
-    global t
-    if t:
+    global t_p
+    if t_p:
         now = time.time()
-        if now >= t:
+        if now >= t_p:
             play_sound()
-            t = 0
+            t_p = 0
     window.after(10000, check)
 
 def play_sound():
     global music
     music = True
     pygame.mixer.init()
-    pygame.mixer.music.load("reminder.mp3")
+    pygame.mixer.music.load("reminder.MP3")
     pygame.mixer.music.play()
 
 def stop_music():
@@ -56,6 +57,7 @@ def stop_music():
 window = Tk()
 window.geometry("400x150")
 window.title ("Напомню")
+window.iconbitmap(default="vosklzn.ico")
 Label = Label(text = "Установите напоминание",  font=("Edwardian Script ITC", 16))
 Label.pack(pady = 10)
 set_button = Button (text = "Установите напоминалку", command=set)
