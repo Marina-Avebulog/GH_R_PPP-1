@@ -14,6 +14,7 @@ music = False
 def set():
     global t_p
     rem = sd.askstring("Время напоминания", "Установите напоминание в 24 ч. формате ЧЧ:ММ")
+    #rem = e.get()
     if rem:
         try:
             hour_p = int(rem.split(":")[0])
@@ -26,9 +27,12 @@ def set():
             print(t_p)
             text_napomin = sd.askstring ("текст напоминания", "Напишите о чем напомнить: ")
             Label.config(text=f"Напоминание на {hour_p:02}:{minute_p:02} напоминаю: {text_napomin}")
+            Label.config(fg="green")
         except Exception as e:
-            mb.showerror("Ошибка", f"Произошла ошибка {e}" )
-
+            mb.showerror("Ошибка", f"Неправильно ввели время.Произошла ошибка {e}" )
+    else:
+        Label.config(text="Поле не заполнили")
+        Label.config("fg = red")
 
 def check():
     global t_p
@@ -52,13 +56,14 @@ def stop_music():
         pygame.mixer.music.stop()
         music = False
     Label.config(text="Установите заново напоминание")
+    Label.config(font=("Showcard Gothic", 16), fg="blue")
 
 
 window = Tk()
 window.geometry("400x150")
 window.title ("Напомню")
 window.iconbitmap(default="vosklzn.ico")
-Label = Label(text = "Установите напоминание",  font=("Edwardian Script ITC", 16))
+Label = Label(text = "Установите напоминание",  font=("Showcard Gothic", 16))
 Label.pack(pady = 10)
 set_button = Button (text = "Установите напоминалку", command=set)
 set_button.pack(pady = 10)
